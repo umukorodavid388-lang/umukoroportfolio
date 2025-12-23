@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Services {% endblock %}
+{% block content %}
+
+
+<main class="main">
+
+  <!-- Page Title -->
+  <div class="page-title dark-background">
+    <div class="container d-lg-flex justify-content-between align-items-center">
+      <h1 class="mb-2 mb-lg-0">Services</h1>
+      <nav class="breadcrumbs">
+        <ol>
+          <li><a href="{% url 'index' %}#services">Home</a></li>
+          <li class="current">Services</li>
+        </ol>
+      </nav>
+    </div>
+  </div><!-- End Page Title -->
+
+  <!-- Services Section -->
+  <section id="services" class="services section">
+
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+      <div class="row justify-content-center">
+        {% for i in servic %}
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="service-card position-relative z-1">
+            <a href="{% url 'services-details' i.id %}"
+              class="card-action d-flex align-items-center justify-content-center rounded-circle">
+              <i class="bi bi-arrow-up-right"></i>
+            </a>
+            <h3>
+              <a href="{% url 'services-details' i.id %}">
+                {{i.title}}
+              </a>
+            </h3>
+            {% comment %} <p>
+              {{i.details}}
+            </p> {% endcomment %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+    </div>
+
+  </section><!-- /Services Section -->
+
+
+</main>
+
+{% endblock %}

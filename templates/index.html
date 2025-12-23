@@ -1,0 +1,536 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Home {% endblock %}
+{% block content %}
+
+
+<main class="main">
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero section">
+
+    <div class="background-elements">
+      <div class="bg-circle circle-1"></div>
+      <div class="bg-circle circle-2"></div>
+    </div>
+
+    <div class="hero-content">
+
+      <div class="container">
+        {% for i in user %}
+        <div class="row align-items-center">
+
+          <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
+            <div class="hero-text">
+              <h1>Port<span class="accent-text">Folio</span></h1>
+              <h2>{{ i.name }}</h2>
+              <p class="lead">I'm an <span class="typed" data-typed-items="Advanced Clarinetist"></span></p>
+              <p class="description">{{i.detail}}</p>
+
+              <div class="hero-actions">
+                <a href="#portfolio" class="btn btn-primary">View My Performance</a>
+                <a href="#contact" class="btn btn-outline">Get In Touch</a>
+              </div>
+              <div class="social-links">
+                {% for link in social_links %}
+                <a href="{{ link.url }}" class="{{ link.name|lower }}">
+                  <i class="{{ link.icon_class }}"></i>
+                </a>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+            <div class="hero-visual">
+              <div class="profile-container">
+                <div class="profile-background"></div>
+                <img src="{{i.pic.url}}" alt="Alexander Chen" class="profile-image">
+              </div>
+            </div>
+          </div>
+
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+  </section><!-- /Hero Section -->
+
+  <!-- About Section -->
+  <section id="about" class="about section">
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+      {% for i in about %}
+      <div class="row">
+        <div class="col-lg-5" data-aos="zoom-in" data-aos-delay="200">
+          <div class="profile-card">
+            <div class="profile-header">
+              <div class="profile-image">
+                <img src="{{i.about_pics.url}}" alt="Profile Image" class="img-fluid">
+              </div>
+              <div class="profile-badge">
+                <i class="bi bi-check-circle-fill"></i>
+              </div>
+            </div>
+
+            <div class="profile-content">
+              <h3>{{i.about_name}}</h3>
+              <p class="profession">{{i.about_work}}</p>
+
+              <div class="contact-links">
+                <a href="mailto:{{i.about_email}}" class="contact-item">
+                  <i class="bi bi-envelope"></i>
+                  {{i.about_email}}
+                </a>
+                <a href="tel:+234{{i.about_number}}" class="contact-item">
+                  <i class="bi bi-telephone"></i>
+                  +234 {{i.about_number}}
+                </a>
+                <a href="#" class="contact-item">
+                  <i class="bi bi-geo-alt"></i>
+                  {{i.about_location}}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-7" data-aos="fade-left" data-aos-delay="300">
+          <div class="about-content">
+            <div class="section-header">
+              <span class="badge-text">Get to Know Me</span>
+              <h2>Passionate About Playing the Clarinet</h2>
+            </div>
+
+            <div class="description">
+              <p>{{i.about_details}}.</p>
+            </div>
+
+            <div class="details-grid">
+              <div class="detail-row">
+                <div class="detail-item">
+                  <span class="detail-label">Specialization</span>
+                  <span class="detail-value">{{i.specialization}}</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">Experience Level</span>
+                  <span class="detail-value">{{i.experience_level}}</span>
+                </div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-item">
+                  <span class="detail-label">Education</span>
+                  <span class="detail-value">{{i.education}}</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">Languages</span>
+                  <span class="detail-value">{{i.languages}}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="cta-section">
+              <a href="#contact" class="btn btn-outline">
+                <i class="bi bi-chat-dots"></i>
+                Let's Talk
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+
+  </section><!-- /About Section -->
+
+
+  <!-- Skills Section -->
+  <section id="skills" class="skills section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+      <h2>Skills</h2>
+    </div><!-- End Section Title -->
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+      <div class="row">
+        {% for i in skill %}
+        <div class="col-lg-6">
+          <div class="skills-category" data-aos="fade-up" data-aos-delay="200">
+            <h3>{{i.category.title}}</h3>
+            <div class="skills-animation">
+              <div class="skill-item">
+                <div class="d-flex justify-content-between align-items-center">
+                  <h4>{{i.name}}</h4>
+                  <span class="skill-percentage">{{i.percentage}}%</span>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="{{i.percentage}}" aria-valuemin="0"
+                    aria-valuemax="100"></div>
+                </div>
+                <div class="skill-tooltip">{{i.tooltip}}</div>
+              </div>
+            </div>
+          </div><!-- End Frontend Skills -->
+        </div>
+        {% endfor %}
+      </div>
+
+    </div>
+
+  </section><!-- /Skills Section -->
+
+  <!-- Resume Section -->
+  <section id="resume" class="resume section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+      <h2>Resume</h2>
+    </div><!-- End Section Title -->
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+      <div class="row gy-4">
+        <!-- Left column with summary and contact -->
+        <div class="col-lg-4">
+          <div class="resume-side" data-aos="fade-right" data-aos-delay="100">
+            {% for i in about %}
+            <div class="profile-img mb-4">
+              <img src="{{i.about_pics.url}}" alt="Profile" class="img-fluid rounded">
+            </div>
+            <h3>Professional Summary</h3>
+            <p>{{i.about_details}}</p>
+            {% endfor %}
+
+            <h3 class="mt-4">Contact Information</h3>
+            {% for i in about %}
+            <ul class="contact-info list-unstyled">
+              <li><i class="bi bi-geo-alt"></i>{{i.about_location}}</li>
+              <li><i class="bi bi-envelope"></i> {{i.about_email}}</li>
+              <li><i class="bi bi-phone"></i> +234 {{i.about_number}}</li>
+            </ul>
+            {% endfor %}
+
+            {% with skill.first as i %}
+            <div class="skills-animation mt-4">
+              <h3>{{i.category.title}}</h3>
+              <div class="skill-item">
+                <div class="d-flex justify-content-between">
+                  <span>{{i.name}}</span>
+                  <span>{{i.percentage}}</span>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="{{i.percentage}}" aria-valuemin="0"
+                    aria-valuemax="100"></div>
+                </div>
+              </div>
+            </div>
+            {% endwith %}
+          </div>
+        </div>
+
+
+        <!-- Right column with experience and education -->
+        <div class="col-lg-8 ps-4 ps-lg-5">
+          <!-- Experience Section -->
+          <div class="resume-section" data-aos="fade-up">
+            <h3><i class="bi bi-briefcase me-2"></i>Professional Experience</h3>
+            {% for i in experi %}
+            <div class="resume-item">
+              <h4>{{i.title}}</h4>
+              <h5>{{i.date}}</h5>
+              <p class="company"><i class="bi bi-building"></i> {{i.description}} .</p>
+              <ul>
+                <p>{{i.details}}</p>
+              </ul>
+            </div>
+            {% endfor %}
+          </div>
+
+          <!-- Education Section -->
+          <div class="resume-section" data-aos="fade-up" data-aos-delay="100">
+            <h3><i class="bi bi-mortarboard me-2"></i>Education</h3>
+            {% for i in resume %}
+            <div class="resume-item">
+              <h4>{{i.title}}</h4>
+              <h5>{{i.duration}}</h5>
+              <p class="company"><i class="bi bi-building"></i>{{i.school}}</p>
+              <p>{{i.descrption}}</p>
+            </div>
+            {% endfor %}
+          </div>
+
+          <!-- Certifications Section -->
+          <div class="resume-section" data-aos="fade-up" data-aos-delay="200">
+            <h3><i class="bi bi-award me-2"></i>Certifications</h3>
+            {% for i in certi %}
+            <div class="resume-item">
+              <h4>{{i.certifi}}</h4>
+              <h5>{{i.date}}</h5>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section><!-- /Resume Section -->
+
+  <!-- Portfolio Section -->
+  <section id="portfolio" class="portfolio section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+      <h2>Portfolio</h2>
+    </div><!-- End Section Title -->
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+      <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+
+        <div class="row">
+          <div class="col-lg-3 filter-sidebar">
+            <div class="filters-wrapper" data-aos="fade-right" data-aos-delay="150">
+              <ul class="portfolio-filters isotope-filters">
+                <li class="filter-active" data-filter="*">All</li>
+                {% for i in portcate %}
+                <li class="filter-active" data-filter=".{{ i.category|slugify }}">{{i.category}}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-lg-9">
+            <div class="row gy-4 portfolio-container isotope-container" data-aos="fade-up" data-aos-delay="200">
+              {% for i in port %}
+              <div class="col-lg-6 col-md-6 portfolio-item isotope-item {{i.categorys.category | slugify}}">
+                <div class="portfolio-wrap">
+                  <img src="{{i.portfolio_pics.url}}" class="img-fluid" alt="Portfolio Image" loading="lazy">
+                  <div class="portfolio-info">
+                    <div class="content">
+                      <span class="category text-white">{{i.categorys.category}}</span>
+                      <h4>{{i.title}}</h4>
+                      <div class="portfolio-links">
+                        <a href="{{i.portfolio_pics.url}}" class="glightbox" title="{{i.categorys.category}}"><i
+                            class="bi bi-plus-lg"></i></a>
+                        <a href="{% url 'portfolio-details' i.pk %}" title="More Details"><i
+                            class="bi bi-arrow-right"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- End Portfolio Item -->
+              {% endfor %}
+
+            </div><!-- End Portfolio Container -->
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section><!-- /Portfolio Section -->
+
+  <!-- Services Section -->
+  <section id="services" class="services section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+      <h2>Services</h2>
+    </div><!-- End Section Title -->
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+      <div class="service-header">
+        <div class="row align-items-center">
+          <div class="col-lg-8 col-md-12">
+            <div class="service-intro">
+              <h2 class="service-heading">
+                <div>Creative Playing</div>
+                <div><span>performance solutions</span></div>
+              </h2>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-12">
+            <div class="service-summary">
+              <a href="{% url 'services' %}" class="service-btn">
+                View All Services
+                <i class="bi bi-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        {% for i in services|slice:":3" %}
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="service-card position-relative z-1">
+            <a href="{% url 'services-details' i.id %}"
+              class="card-action d-flex align-items-center justify-content-center rounded-circle">
+              <i class="bi bi-arrow-up-right"></i>
+            </a>
+            <h3>
+              <a href="{% url 'services-details' i.id %}">
+                {{i.title}}
+              </a>
+            </h3>
+            {% comment %} <p>
+              {{i.details}}
+            </p> {% endcomment %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+    </div>
+
+  </section><!-- /Services Section -->
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="testimonials section light-background">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+      <h2>Testimonials</h2>
+    </div><!-- End Section Title -->
+    <div class="service-summary">
+      <a href="{% url 'form' %}" class="service-btn">
+        Add Your Testimonial
+        <i class="bi bi-arrow-right"></i>
+      </a>
+    </div>
+    <div class="container">
+
+      <div class="testimonial-masonry">
+        {% for i in testimonial %}
+        <div class="testimonial-item" data-aos="fade-up">
+          <div class="testimonial-content">
+            <div class="quote-pattern">
+              <i class="bi bi-quote"></i>
+            </div>
+            <p>{{i.details}}</p>
+            <div class="client-info">
+              <div class="client-image">
+                {% if i.picture %}
+                <img src="{{i.picture.url}}" alt="Client">
+                {% else %}
+                <img src="{% static 'image/default.jpg' %}" alt="">
+                {% endif %}
+              </div>
+              <div class="client-details">
+                <h3>{{i.name}}</h3>
+                <span class="position">{{i.subject}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+    </div>
+
+  </section><!-- /Testimonials Section -->
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+      <h2>Contact</h2>
+    </div><!-- End Section Title -->
+
+    <div class="container">
+
+      <div class="row g-4 g-lg-5">
+        <div class="col-lg-5">
+          {% for i in about %}
+          <div class="info-box">
+            <h3>Contact Info</h3>
+            <p>I would love to hear from you. Whether you're interested in clarinet lessons, music collaborations, live
+              performances or just want to talk about classical music feel free to reach out. Let's connect and make
+              music together.</p>
+
+            <div class="info-item">
+              <div class="icon-box">
+                <i class="bi bi-geo-alt"></i>
+              </div>
+              <div class="content">
+                <h4>Our Location</h4>
+                <p>{{i.about_location}}</p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="icon-box">
+                <i class="bi bi-telephone"></i>
+              </div>
+              <div class="content">
+                <h4>Phone Number</h4>
+                <p>+234 {{i.about_number}}</p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="icon-box">
+                <i class="bi bi-envelope"></i>
+              </div>
+              <div class="content">
+                <h4>Email Address</h4>
+                <p>{{i.about_email}}</p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="col-lg-7">
+          <div class="contact-form">
+            <h3>Get In Touch</h3>
+            <form action="" method="post">
+              {% if messages %}
+              {% for message in messages %}
+              {% if 'success' in message.tags %}
+              <p class="alert alert-success">{{ message }}</p>
+              {% elif 'error' in message.tags %}
+              <p class="alert alert-danger">{{ message }}</p>
+              {% endif %}
+              {% endfor %}
+              {% endif %}
+              {% csrf_token %}
+              <div class="row gy-4">
+                <div class="col-md-6">
+                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                </div>
+                <div class="col-md-6">
+                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+                </div>
+                <div class="col-12">
+                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                </div>
+                <div class="col-12">
+                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                </div>
+                <div class="col-12 text-center">
+                  <button type="submit" class="btn">Send Message</button>
+                </div>
+              </div>
+            </form>
+
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section><!-- /Contact Section -->
+
+</main>
+
+{% endblock %}
