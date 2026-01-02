@@ -2,6 +2,11 @@ from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from .models import *
 from django.contrib import messages
+from django.http import FileResponse, Http404
+from .models import Resume
+import os
+
+
 
 # Create your views here.
 def index(request):
@@ -101,3 +106,20 @@ def form(request):
         messages.success(request, 'Testimonial Sent Successfully')
 
     return render(request, 'form.html', {"show_sidebar": False})
+
+
+def download_resume(request):
+    try:
+        resume = Resume.objects.latest("updated_at")
+        file_path = resume.file.path
+
+        if os.path.exists(file_path):
+            return FileResponse(
+                open(file_path, "rb"),
+                as_attachment=True,
+                filename=os.path.basename(file_path),
+            )
+        else:
+            raise Http404
+    except Resume.DoesNotExist:
+        raise Http404("Resume not found")

@@ -54,3 +54,4 @@ class ServiceBulletAdmin(admin.ModelAdmin):
 
 admin.site.register(Testimonial)
 admin.site.register(SocialLink)
+admin.site.register(Resume)
